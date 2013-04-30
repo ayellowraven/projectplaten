@@ -22,3 +22,42 @@
 [submodule "extensions/xssfilter"]
 	path = extensions/xssfilter
 	url = git://github.com/symphonycms/xssfilter.git
+[submodule "extensions/apipage"]
+	path = extensions/apipage
+	url = git://github.com/iwyg/apipage.git
+[submodule "extensions/cacheabledatasource"]
+	path = extensions/cacheabledatasource
+	url = git://github.com/nickdunn/cacheabledatasource.git
+[submodule "extensions/elasticsearch"]
+	path = extensions/elasticsearch
+	url = git://github.com/nickdunn/elasticsearch.git
+[submodule "extensions/globalresourceloader"]
+	path = extensions/globalresourceloader
+	url = git://github.com/symphonists/globalresourceloader.git
+[submodule "extensions/useragent_details"]
+	path = extensions/useragent_details
+	url = git://github.com/ayellowraven/useragent_details.git
+[submodule "extensions/importcsv"]
+	path = extensions/importcsv
+	url = git://github.com/kanduvisla/importcsv.git
+[submodule "extensions/maplocationfield"]
+	path = extensions/maplocationfield
+	url = git://github.com/nickdunn/maplocationfield.git
+[submodule "extensions/numberfield"]
+	path = extensions/numberfield
+	url = git://github.com/symphonycms/numberfield.git
+[submodule "extensions/save_and_return"]
+	path = extensions/save_and_return
+	url = git://github.com/Solutions-Nitriques/save_and_return.git
+[submodule "extensions/static_section"]
+	path = extensions/static_section
+	url = git://github.com/Solutions-Nitriques/static_section.git
+[submodule "extensions/url_router"]
+	path = extensions/url_router
+	url = git://github.com/symphonists/url_router.git
+[submodule "extensions/xmlimporter"]
+	path = extensions/xmlimporter
+	url = git://github.com/symphonists/xmlimporter.git
+[submodule "workspace"]
+	path = workspace
+	url = git@github.com:ayellowraven/workspace.git
