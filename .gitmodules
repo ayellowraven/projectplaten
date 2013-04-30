@@ -61,3 +61,6 @@
 [submodule "workspace"]
 	path = workspace
 	url = git@github.com:ayellowraven/workspace.git
+[submodule "extensions/documenter"]
+	path = extensions/documenter
+	url = git://github.com/symphonists/documenter.git
