@@ -51,7 +51,7 @@
 
 		###### GENERAL ######
 		'general' => array(
-			'sitename' => 'Platen Press Develop',
+			'sitename' => 'Your book name',
 		),
 		########
 
