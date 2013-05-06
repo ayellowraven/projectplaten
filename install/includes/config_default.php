@@ -118,7 +118,7 @@
 		###### ELASTICSEARCH ######
 		'elasticsearch' => array(
 			'host' => 'http://localhost:9200/',
-			'index-name' => 'book-title',
+			'index-name' => '',
 			'reindex-batch-size' => '20',
 			'reindex-batch-delay' => '0',
 			'per-page' => '20',
@@ -146,7 +146,7 @@
 
 		###### PLATEN_COOKIES ######
 		'platen_cookies' => array(
-			'bookslug' => 'book',
+			'bookslug' => '',
 		),
 		########
 
