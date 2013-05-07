@@ -46,14 +46,14 @@ Before installation, see the [notes on file permissions](#file-permissions).
 
 1. Clone the git repository to the location you desire using:
 
-		git clone git://github.com/symphonycms/symphony-2.git
+		git clone git@github.com:ayellowraven/projectplaten.git
 
 1. Run the following command to ensure the submodules are cloned:
 
 		git submodule update --init --recursive
 
 1. Point your web browser at <http://example.com/install/> and provide
-details for establishing a database connection and about your server environment.
+details for establishing a database connection and about your server environment. (It may tell you the `static_section` extension was not enabled, do not worry.)
 
 1. Remove installer files:
 
@@ -71,9 +71,9 @@ After completing the install process, point your browser at <http://example.com/
 
 ### Code Updates
 
-1. `workspace/js/script.js`: Replace `[book]` with the value of Project Platen Cookies on: `/symphony/system/preferences/`
+1. `workspace/js/script.js`: Replace all instances of `[book]` with the value of Project Platen Cookies on: `/symphony/system/preferences/`
 		
-1. `workspace/utilities/page-title.xsl`: Replace `[Author]` with the name of the author.
+1. `workspace/utilities/page-title.xsl`: Replace all instances of `[Author]` with the name of the author.
 
 1. `workspace/utilities/master.xsl`: Remember to set your google analytics ID. (Comment)
 
@@ -87,7 +87,7 @@ If your book is in CSV format, you can also use the CSV importer at `/symphony/e
 
 ### Building the API
 
-Most of the API is ready for your content. 
+Most of the API is ready for your content, you only need to add some text in the files that start with `api` in `workspace/pages`.
 
 ### File permissions
 
