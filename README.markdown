@@ -1,11 +1,9 @@
-# Symphony 2
+# Project Platen – An open-source platform for creating digital books
 
-- Version: 2.3.3 Beta 2
-- Date: 16th April 2013
-- Release Notes: <https://gist.github.com/brendo/5300783>
-- Github Repository: <http://github.com/symphonycms/symphony-2/tree/2.3.3beta2>
-
-
+- Project Platen Version: 1.0 Beta
+- Symphony Version: 2.3.3 Beta 2
+- Date: 2013.04.30
+- Github Repository: <http://github.com/ayellowraven/projectplaten>
 
 ## Contents
 
@@ -20,8 +18,11 @@
 	* [Updating via Git](#updating-via-git)
 	* [Updating via the old-fashioned way](#updating-via-the-old-fashioned-way)
 
-
 ## Overview
+
+Project Platen is an open-source framework for publishing digital books as websites. It includes page templates for book content, a powerful search engine (via Elasticsearch), and the basics for creating public APIs, for other applications to interact with the book contents, its metadata, and any other content you wish to include (such as datasets for those who wish to publish their data openly).
+
+The design includes styles for easy reading, basic bookmarking, linking to specific headings and paragraphs, and day/night reading modes.
 
 Symphony is a `PHP` & `MySQL` based CMS that utilises `XML` and `XSLT` as its core technologies. This repository represents version `2.3.3 Beta 2` and is considered unstable.
 
@@ -35,12 +36,7 @@ Visit [the Symphony website](http://getsymphony.com/), [the forum](http://getsym
 - A webserver (known to be used with Apache, Litespeed, Nginx and Hiawatha)
 - Apache’s `mod_rewrite` module or equivalent
 - PHP’s built in `json` functions, which are enabled by default in PHP 5.2 and above; if they are missing, ensure PHP wasn’t compiled with `--disable-json`
-
-### A note for Windows developers
-
-While Windows is not officially supported for production, we understand many developers use WAMP for Symphony development before deploying to a production server. The Symphony team recommends that while using WAMP, developers use the latest PHP 5.3.x version during development to minimise any potential issues. PHP 5.3 provides numerous fixes and improvements to help minimise and standardise the result of several functions that behave slightly differently depending on the OS.
-
-
+- Elasticsearch (follow install instructions from: https://github.com/nickdunn/elasticsearch)
 
 ## Installing
 
@@ -52,55 +48,46 @@ Before installation, see the [notes on file permissions](#file-permissions).
 
 		git clone git://github.com/symphonycms/symphony-2.git
 
-	The following repositories are included as submodules:
-
-	[Markdown](http://github.com/symphonycms/markdown)  
-	[Maintenance Mode](http://github.com/symphonycms/maintenance_mode)  
-	[Select Box Link Field](http://github.com/symphonycms/selectbox_link_field)  
-	[JIT Image Manipulation](http://github.com/symphonycms/jit_image_manipulation)  
-	[Export Ensemble](http://github.com/symphonycms/export_ensemble)  
-	[Debug DevKit](http://github.com/symphonycms/debugdevkit/tree/master)  
-	[Profile DevKit](http://github.com/symphonycms/profiledevkit/tree/master)  
-	[XSS Filter](http://github.com/symphonycms/xssfilter/tree/master)
-
 1. Run the following command to ensure the submodules are cloned:
 
 		git submodule update --init --recursive
 
-1. _(Optional)_ If you would like the [default ensemble](http://github.com/symphonycms/workspace/tree) installed as well,
-you will need to use the following command from within the Symphony 2 folder you just created:
-
-		git clone git://github.com/symphonycms/workspace.git
-
 1. Point your web browser at <http://example.com/install/> and provide
 details for establishing a database connection and about your server environment.
 
-1. Chuckle villainously and tap your fingertips together (or pet a cat) as your installation completes.
-
 1. Remove installer files:
 
 	`rm -rf install/ workspace/install.sql`
+	
+### Settings
 
-### Via the old-fashioned way
+After completing the install process, point your browser at <http://example.com/symphony> and log in. I have added documentation to much of the admin section to help you set up your book. First, go to the preferences (System → Preferences)
 
-**Note:** You can leave `/workspace` out if you do not want the default theme.
+1. ElasticSearch: Project Platen uses ElasticSearch for its search functions. If you have not set up ElasticSearch before, you can follow the instructions at <https://github.com/nickdunn/elasticsearch>. *You will not be able to use the ElasticSearch tab until you have finished setting this up.* However, you do not have to set it up immediately, all the other parts of the site will still function.
 
-1. This step assumes you downloaded a zip archive from the [Symphony website](http://getsymphony.com). Upload the following files and directories to the root directory of your website:
+1. Project Platen Cookies: You need to provide a prefix for cookies unique to this book (this is so you can host multiple books on a single domain). The name should be in the form of a handle (without spaces).
 
-	`index.php`  
-	`/install`  
-	`/symphony`  
-	`/workspace`  
-	`/extensions`
+1. Useragent Details: In order to use auto day/night reading mode, you need to check Utilize Geoplugin.
 
-1. Point your web browser at <http://example.com/install/> and provide
-details on establishing a database connection and your server environment.
+### Code Updates
 
-1. Pose like you’re being filmed for a dramatic close-up while your installation completes.
+1. `workspace/js/script.js`: Replace `[book]` with the value of Project Platen Cookies on: `/symphony/system/preferences/`
+		
+1. `workspace/utilities/page-title.xsl`: Replace `[Author]` with the name of the author.
 
-1. Remove installer files:
+1. `workspace/utilities/master.xsl`: Remember to set your google analytics ID. (Comment)
 
-	`rm -rf install/ workspace/install.sql`
+### Importing your book
+
+You can create new chapters through the admin panel through Book → Chapters. By default it accepts the text in Markdown, also allows html (be sure to close all your tags).
+
+If your content is already in XML form, you can use the XML importer at `/symphony/extension/xmlimporter/importers/`. (From the Symphony admin panel Blueprints → XML Importers.) More on how to use the XML Importer is available at: [http://symphonyextensions.com/extensions/xmlimporter/]
+
+If your book is in CSV format, you can also use the CSV importer at `/symphony/extension/importcsv/`, however this is often the most difficult since the importer can be finicky with the formatting.
+
+### Building the API
+
+Most of the API is ready for your content. 
 
 ### File permissions
 
@@ -122,70 +109,3 @@ To recursively chmod directories only:
 To recursively chmod files only:
 
 	find /your/site/root -type f -exec chmod 644 {} \;
-
-
-
-## Updating from an older version
-
-### Version-specific notes
-
-#### Versions prior to 2.3
-
-Symphony `2.3` officially only supports updating from a `2.2.x` release. There are various changes between `2.1` and `2.3` that make this update unlikely to be successful. Symphony `2.3` also enforces that all authors have unique email addresses, so please ensure that this constraint is met before updating.
-
-#### Versions prior to 2.2
-
-Symphony `2.2` introduces numerous improvements that may affect extension compatibility. Before updating, be sure to consult the [extension compatibility table](http://getsymphony.com/download/extensions/compatibility/) to verify that the extensions you’re using have all been updated for Symphony `2.2`.
-
-#### Versions prior to 2.1
-
-As of version `2.1`, Symphony stores passwords using the more secure [SHA1](http://php.net/sha1) algorithm (previous versions used MD5). When updating to `2.1`, the primary user’s login password will be reset (the new password will be displayed by the updater—please note it).
-
-Please also note that all other users’ passwords will no longer be valid and will require a manual reset through Symphony’s forgotten password feature. Alternatively, as an administrator, you can also change your users’ passwords on their behalf.
-
-We are now using [GitHub’s organisations feature](http://github.com/blog/674-introducing-organizations). As a result, all submodules—as well as the main Symphony 2 repo—are forks owned by the [Symphony CMS organisation](http://github.com/symphonycms/).
-
-To fully update your Git-based installation, please edit your `.git/config` and the `.git/config` of each core extension (`debugdevkit`, `profiledevkit`, `markdown`, `maintenance_mode`, `selectbox_link_field`, `jit_image_manipulation` and `export_ensemble`) and change the URL of the remote repo from `symphony` or `pointybeard` to be `symphonycms`.
-
-For example:
-
-	[remote "origin"]
-		fetch = +refs/heads/*:refs/remotes/origin/*
-		url = git://github.com/pointybeard/markdown.git
-
-Change `git://github.com/pointybeard/markdown.git` to `git://github.com/symphonycms/markdown.git`
-
-#### Versions prior to 2.0.5
-
-Version `2.0.5` introduced multiple includable elements in the Data Source Editor for a single field. After updating from `2.0.5` or lower, the DS editor will seem to “forget” about any `Textarea` fields selected when you are editing existing Data Sources. After updating, you must ensure you re-select them before saving. Note, this will only effect Data Sources that you edit and were created prior to `2.0.5`. Until that point, the field will still be included in any front-end XML.
-
-### Updating via Git
-
-1. Pull from the master branch at `git://github.com/symphonycms/symphony-2.git`
-
-1. Use the following command to bring extensions up to date:
-
-		git submodule update --init --recursive
-
-1. If updating from a version older than `2.0.5`, enable the [Debug DevKit](http://github.com/symphonycms/debugdevkit/tree/master) and [Profile DevKit](http://github.com/symphonycms/profiledevkit/tree/master) extensions.
-
-1. Go to `http://example.com/install/` to complete the update process.
-
-1. You and your website are now in the future. Buy yourself a silver jumpsuit.
-
-### Updating via the old-fashioned way
-
-Follow the instructions below if you are updating from Symphony 2.0 (not from Git)
-
-**Note:** As of 2.0.6, there is no longer a need to backup `/symphony/.htaccess`.
-
-1. Upload `/symphony`, `/install` & `index.php`, replacing what is already on your server.
-
-1. If you are updating from a version older than 2.0.5, download and install the Debug DevKit and Profile DevKit:
-
-	[Debug DevKit](http://github.com/symphonycms/debugdevkit/tree/master)  
-	[Profile DevKit](http://github.com/symphonycms/profiledevkit/tree/master)
-
-1. Go to `http://example.com/install/` to complete the update process.
-
-1. Call a friend and brag that your copy of Symphony is newer than theirs.
