@@ -5,28 +5,13 @@
 - Date: 2013.04.30
 - Github Repository: <http://github.com/ayellowraven/projectplaten>
 
-## Contents
-
-* [Overview](#overview)
-* [Server requirements](#server-requirements)
-* [Installing](#installing)
-	* [Via Git](#via-git)
-	* [Via the old-fashioned way](#via-the-old-fashioned-way)
-	* [File permissions](#file-permissions)
-* [Updating from an older version](#updating-from-an-older-version)
-	* [Version-specific notes](#version-specific-notes)
-	* [Updating via Git](#updating-via-git)
-	* [Updating via the old-fashioned way](#updating-via-the-old-fashioned-way)
-
 ## Overview
 
 Project Platen is an open-source framework for publishing digital books as websites. It includes page templates for book content, a powerful search engine (via Elasticsearch), and the basics for creating public APIs, for other applications to interact with the book contents, its metadata, and any other content you wish to include (such as datasets for those who wish to publish their data openly).
 
 The design includes styles for easy reading, basic bookmarking, linking to specific headings and paragraphs, and day/night reading modes.
 
-Symphony is a `PHP` & `MySQL` based CMS that utilises `XML` and `XSLT` as its core technologies. This repository represents version `2.3.3 Beta 2` and is considered unstable.
-
-Visit [the Symphony website](http://getsymphony.com/), [the forum](http://getsymphony.com/discuss/) or learn how you can [contribute to Symphony](https://github.com/symphonycms/symphony-2/wiki/Contributing-to-Symphony).
+Symphony is a `PHP` & `MySQL` based CMS that utilises `XML` and `XSLT` as its core technologies.
 
 ## Server requirements
 
@@ -88,6 +73,10 @@ If your book is in CSV format, you can also use the CSV importer at `/symphony/e
 ### Building the API
 
 Most of the API is ready for your content, you only need to add some text in the files that start with `api` in `workspace/pages`.
+
+### Styles
+
+The CSS for this project are generated from the files in `workspace/sass` using [Compass](http://compass-style.org) and the [Compass H5bp gem](https://github.com/sporkd/compass-h5bp). If you have not used Compass or [SASS](http://sass-lang.com) before, do not worry. If you are used to CSS, you’ll be up to speed in no time: <http://thesassway.com/guides>.
 
 ### File permissions
 
